@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema elementFormDefault="qualified" version="1.0" targetNamespace="http://www.example.com/example/1.0.0" xmlns:tns="http://www.example.com/example/1.0.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="example" type="tns:example"/>
+
+  <xs:complexType name="example" final="extension restriction">
+    <xs:sequence>
+      <xs:element name="elements" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:choice minOccurs="0" maxOccurs="unbounded">
+              <xs:element name="typeone" type="tns:elementTypeOne"/>
+              <xs:element name="typetwo" type="tns:elementTypeTwo"/>
+            </xs:choice>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="references" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="reference" type="tns:reference" minOccurs="0" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="elementTypeOne" final="extension restriction">
+    <xs:sequence/>
+    <xs:attribute name="name" type="xs:ID" use="required"/>
+  </xs:complexType>
+
+  <xs:complexType name="elementTypeTwo" final="extension restriction">
+    <xs:sequence/>
+    <xs:attribute name="name" type="xs:ID" use="required"/>
+    <xs:attribute name="value" type="xs:string" use="required"/>
+  </xs:complexType>
+
+  <xs:complexType name="reference" final="extension restriction">
+    <xs:sequence/>
+    <xs:attribute name="elementOne" type="xs:IDREF" use="required"/>
+    <xs:attribute name="elementTwo" type="xs:IDREF" use="required"/>
+  </xs:complexType>
+</xs:schema>
+

@@ -1,0 +1,20 @@
+plugins {
+    id "java-library"
+    id "com.intershop.gradle.jaxb" version "3.0.4"
+}
+
+repositories {
+    jcenter()
+}
+
+jaxb {
+  schemaGen {
+    graph {
+      outputDir = file("model-gen")
+      inputDir = file("src/main/java")
+      includes = ["com/example/**/*.java"]
+      namespaceconfigs = ["http://www.example.com/example/1.0.0" : "example.xsd"]
+    }
+  }
+}
+build.dependsOn jaxbSchemaGenGraph
